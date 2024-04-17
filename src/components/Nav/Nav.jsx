@@ -11,16 +11,18 @@ const Nav = () => {
     </>
   );
   return (
-    <div className="flex flex-col lg:flex-row gap-4 lg:gap-0 items-center mt-6">
+    <div className="flex flex-col lg:flex-row gap-4 lg:gap-0 items-center mt-4">
       <div className="mx-auto space-x-4">{navLinks}</div>
-      <div className="flex gap-4">
+      <div className="flex gap-4 items-center">
         <Avatar
           className=""
           src="https://docs.material-tailwind.com/img/face-2.jpg"
           alt="avatar"
         />
         <RxAvatar className=" text-4xl lg:text-5xl hidden" />
-        <Button>Login</Button>
+        <NavLink to={'/login'}>
+          <Button>Login</Button>
+        </NavLink>
       </div>
     </div>
   );
