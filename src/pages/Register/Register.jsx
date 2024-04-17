@@ -2,6 +2,8 @@ import { NavLink } from "react-router-dom";
 import Nav from "../../components/Nav/Nav";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
+import { updateProfile } from "firebase/auth";
+import { auth } from "../../firebase/firebase.init";
 
 const Register = () => {
   // get AuthContext
@@ -13,11 +15,15 @@ const Register = () => {
     const email = e.target.email.value;
     const photoUrl = e.target.photoUrl.value;
     const password = e.target.password.value;
-    console.log(name, email, photoUrl, password);
+    // console.log(name, email, photoUrl, password);
 
     // create user
     createUser(email, password)
       .then((userCredential) => {
+        updateProfile(auth.currentUser, {
+          displayName: name,
+          photoURL: photoUrl,
+        });
         console.log(userCredential.user);
       })
       .catch((error) => {

@@ -1,4 +1,4 @@
-import { Avatar, Button } from "@material-tailwind/react";
+import { Avatar, Button, Tooltip } from "@material-tailwind/react";
 import { NavLink } from "react-router-dom";
 import { RxAvatar } from "react-icons/rx";
 import { useContext } from "react";
@@ -37,12 +37,14 @@ const Nav = () => {
         <ul className="flex gap-4">{navLinks}</ul>
       </div>
       <div className="flex gap-4 items-center">
-        <Avatar
-          className=""
-          src="https://docs.material-tailwind.com/img/face-2.jpg"
-          alt="avatar"
-        />
-        <RxAvatar className=" text-4xl lg:text-5xl hidden" />
+        {user ? (
+          <Tooltip content={user.displayName}>
+            <Avatar className="" src={user.photoURL} alt="avatar" />
+          </Tooltip>
+        ) : (
+          <RxAvatar className="text-4xl lg:text-5xl " />
+        )}
+
         {user ? (
           <Button onClick={handleLogout}>Logout</Button>
         ) : (

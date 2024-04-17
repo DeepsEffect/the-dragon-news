@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import Nav from "../../components/Nav/Nav";
+
 import {
   Card,
   CardHeader,
@@ -22,7 +23,7 @@ const Login = () => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log(email, password);
+    // console.log(email, password);
     loginUser(email, password)
       .then((userCredential) => {
         console.log(userCredential);
