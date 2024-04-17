@@ -23,6 +23,7 @@ const AuthProvider = ({ children }) => {
 
   //   sign in user
   const loginUser = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
@@ -33,11 +34,18 @@ const AuthProvider = ({ children }) => {
 
   //    observing current user
   useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, (currentUSer) => {
-      setUser(currentUSer);
-      setLoading(false);
-      console.log("current user: ", currentUSer);
-    });
+    const unSubscribe = onAuthStateChanged(
+      auth,
+      (currentUSer) => {
+        setUser(currentUSer);
+        setLoading(false);
+        console.log("current user: ", currentUSer);
+      },
+      (error) => {
+        console.error("Error observing auth state:", error);
+        setLoading(false);
+      }
+    );
     return () => {
       unSubscribe();
     };

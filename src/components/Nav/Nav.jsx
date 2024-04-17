@@ -6,7 +6,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import "./Nav.css";
 
 const Nav = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, loading } = useContext(AuthContext);
   const navLinks = (
     <>
       <li>
@@ -37,12 +37,14 @@ const Nav = () => {
         <ul className="flex gap-4">{navLinks}</ul>
       </div>
       <div className="flex gap-4 items-center">
-        {user ? (
+        {loading ? (
+          <p>Loading...</p>
+        ) : user ? (
           <Tooltip content={user.displayName}>
             <Avatar className="" src={user.photoURL} alt="avatar" />
           </Tooltip>
         ) : (
-          <RxAvatar className="text-4xl lg:text-5xl " />
+          <RxAvatar className="text-4xl lg:text-5xl" />
         )}
 
         {user ? (
