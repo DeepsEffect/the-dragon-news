@@ -1,4 +1,5 @@
 import Nav from "../../components/Nav/Nav";
+import NewsLayout from "../../components/NewsLayouts/NewsLayout";
 import Title from "../../components/Title/Title";
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
     <div>
       <Title></Title>
       <Nav></Nav>
+      <NewsLayout></NewsLayout>
     </div>
   );
 };
