@@ -60,8 +60,8 @@ const NewsLayout = () => {
           </div>
         </div>
         <div className="relative flex-col space-y-4 lg:flex-row col-span-12 xl:col-span-6 lg:col-span-5 md:col-span-9 min-h-96">
-          {news.map((eachNews, idx) => (
-            <NewsCard eachNews={eachNews} key={idx}></NewsCard>
+          {news.map((eachNews) => (
+            <NewsCard eachNews={eachNews} key={eachNews._id}></NewsCard>
           ))}
         </div>
         <div className="hidden py-2 xl:col-span-3 lg:col-span-4 md:hidden lg:block">

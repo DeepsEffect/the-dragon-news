@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {
   Card,
   CardHeader,
@@ -5,8 +6,22 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
+import { FaEye } from "react-icons/fa";
+import { FaRegStar } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
-const NewsCard = () => {
+const NewsCard = ({ eachNews }) => {
+  const {
+    _id,
+    rating,
+    total_view,
+    title,
+    // author,
+    // thumbnail_url,
+    image_url,
+    details,
+  } = eachNews;
+
   return (
     <Card className="w-full max-w-[48rem] flex-row">
       <CardHeader
@@ -15,27 +30,33 @@ const NewsCard = () => {
         className="m-0 w-2/5 shrink-0 rounded-r-none"
       >
         <img
-          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
+          src={image_url}
           alt="card-image"
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover box-border "
         />
       </CardHeader>
       <CardBody>
-        <Typography variant="h6" color="gray" className="mb-4 uppercase">
-          startups
+        <Typography
+          variant="h6"
+          color="gray"
+          className="mb-4 uppercase flex gap-2 items-center"
+        >
+          <FaEye className="text-xl" />
+          {total_view}
+          <div className="flex gap-2 items-center">
+            <FaRegStar  className="text-xl"/>
+            <p>{rating.number}</p>
+          </div>
         </Typography>
         <Typography variant="h4" color="blue-gray" className="mb-2">
-          Lyft launching cross-platform service this week
+          {title}
         </Typography>
         <Typography color="gray" className="mb-8 font-normal">
-          Like so many organizations these days, Autodesk is a company in
-          transition. It was until recently a traditional boxed software company
-          selling licenses. Yet its own business model disruption is only part
-          of the story
+          {details.length > 200 ? details.slice(0, 200) + "..." : details}
         </Typography>
-        <a href="#" className="inline-block">
+        <Link to={`newsDetails/${_id}`} className="inline-block">
           <Button variant="text" className="flex items-center gap-2">
-            Learn More
+            Read More
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -51,7 +72,7 @@ const NewsCard = () => {
               />
             </svg>
           </Button>
-        </a>
+        </Link>
       </CardBody>
     </Card>
   );
