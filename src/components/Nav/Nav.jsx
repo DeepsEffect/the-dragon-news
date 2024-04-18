@@ -32,7 +32,7 @@ const Nav = () => {
       });
   };
   return (
-    <div className="flex flex-col lg:flex-row gap-4 lg:gap-0 items-center mt-4">
+    <div className="flex flex-col lg:flex-row gap-4 lg:gap-0 items-center mt-4 sticky top-0 z-10 bg-gray-200 rounded-lg py-2 bg-transparent bg-opacity-70 mb-4 shadow-lg backdrop-blur-sm">
       <div className="mx-auto space-x-4">
         <ul className="flex gap-4">{navLinks}</ul>
       </div>
@@ -41,7 +41,7 @@ const Nav = () => {
           <p>Loading...</p>
         ) : user ? (
           <Tooltip content={user.displayName}>
-            <Avatar className="" src={user.photoURL} alt="avatar" />
+            <Avatar src={user.photoURL} alt="avatar" />
           </Tooltip>
         ) : (
           <RxAvatar className="text-4xl lg:text-5xl" />
